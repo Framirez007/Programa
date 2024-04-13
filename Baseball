@@ -45,11 +45,11 @@ class Program {
         Console.WriteLine($"Juegos ganados: {juegosGanadosSegundaInstancia}, Juegos perdidos: {juegosPerdidosSegundaInstancia}");
 
         if (juegosGanadosPrimeraInstancia > juegosGanadosSegundaInstancia) {
-            Console.WriteLine("La primera instancia fue más productiva.");
+            Console.WriteLine("La primera instancia fue mas productiva.");
         } else if (juegosGanadosSegundaInstancia > juegosGanadosPrimeraInstancia) {
-            Console.WriteLine("La segunda instancia fue más productiva.");
+            Console.WriteLine("La segunda instancia fue mas productiva.");
         } else {
-            Console.WriteLine("Ambas instancias tuvieron el mismo número de juegos ganados.");
+            Console.WriteLine("Ambas instancias tuvieron el mismo numero de juegos ganados.");
         }
     }
 
