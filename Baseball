@@ -1,0 +1,94 @@
+using System;
+
+class Jugador {
+    public string Nombre { get; set; }
+    public int Numero { get; set; }
+}
+
+class Pitcher : Jugador {
+    public int JuegosGanados { get; set; }
+    public int JuegosPerdidos { get; set; }
+}
+
+class Bateador : Jugador {
+    public int Hits { get; set; }
+    public int CarrerasAnotadas { get; set; }
+}
+
+class Program {
+    static void Main(string[] args) {
+        // Instancia del equipo de béisbol en la primera instancia
+        Pitcher[] pitchersPrimeraInstancia = new Pitcher[13];
+        Bateador[] bateadoresPrimeraInstancia = new Bateador[12];
+
+        // Instancia del equipo de béisbol en la segunda instancia
+        Pitcher[] pitchersSegundaInstancia = new Pitcher[16];
+        Bateador[] bateadoresSegundaInstancia = new Bateador[9];
+
+        // Establecer resultados de la primera instancia
+        EstablecerResultados(pitchersPrimeraInstancia, bateadoresPrimeraInstancia, 23, 27);
+
+        // Establecer resultados de la segunda instancia
+        EstablecerResultados(pitchersSegundaInstancia, bateadoresSegundaInstancia, 35, 15);
+
+        // Comparación de instancias
+        int juegosGanadosPrimeraInstancia = ObtenerTotalJuegosGanados(pitchersPrimeraInstancia) + ObtenerTotalJuegosGanados(bateadoresPrimeraInstancia);
+        int juegosPerdidosPrimeraInstancia = ObtenerTotalJuegosPerdidos(pitchersPrimeraInstancia) + ObtenerTotalJuegosPerdidos(bateadoresPrimeraInstancia);
+        
+        int juegosGanadosSegundaInstancia = ObtenerTotalJuegosGanados(pitchersSegundaInstancia) + ObtenerTotalJuegosGanados(bateadoresSegundaInstancia);
+        int juegosPerdidosSegundaInstancia = ObtenerTotalJuegosPerdidos(pitchersSegundaInstancia) + ObtenerTotalJuegosPerdidos(bateadoresSegundaInstancia);
+        
+        Console.WriteLine("Primera instancia:");
+        Console.WriteLine($"Juegos ganados: {juegosGanadosPrimeraInstancia}, Juegos perdidos: {juegosPerdidosPrimeraInstancia}");
+        
+        Console.WriteLine("Segunda instancia:");
+        Console.WriteLine($"Juegos ganados: {juegosGanadosSegundaInstancia}, Juegos perdidos: {juegosPerdidosSegundaInstancia}");
+
+        if (juegosGanadosPrimeraInstancia > juegosGanadosSegundaInstancia) {
+            Console.WriteLine("La primera instancia fue más productiva.");
+        } else if (juegosGanadosSegundaInstancia > juegosGanadosPrimeraInstancia) {
+            Console.WriteLine("La segunda instancia fue más productiva.");
+        } else {
+            Console.WriteLine("Ambas instancias tuvieron el mismo número de juegos ganados.");
+        }
+    }
+
+    static void EstablecerResultados(Pitcher[] pitchers, Bateador[] bateadores, int ganados, int perdidos) {
+        // Inicializar cada pitcher en el arreglo
+        for (int i = 0; i < pitchers.Length; i++) {
+            pitchers[i] = new Pitcher(); // Crear una nueva instancia de Pitcher
+            pitchers[i].JuegosGanados = ganados / pitchers.Length;
+            pitchers[i].JuegosPerdidos = perdidos / pitchers.Length;
+        }
+
+        // Inicializar cada bateador en el arreglo
+        for (int i = 0; i < bateadores.Length; i++) {
+            bateadores[i] = new Bateador(); // Crear una nueva instancia de Bateador
+            // Aquí podrías establecer estadísticas de bateo si fuera necesario
+        }
+    }
+
+    static int ObtenerTotalJuegosGanados(Jugador[] jugadores) {
+        int total = 0;
+        foreach (var jugador in jugadores) {
+            if (jugador is Pitcher) {
+                total += ((Pitcher)jugador).JuegosGanados;
+            } else if (jugador is Bateador) {
+                // Aquí podrías agregar lógica para contabilizar otros tipos de estadísticas de bateadores si fuera necesario
+            }
+        }
+        return total;
+    }
+
+    static int ObtenerTotalJuegosPerdidos(Jugador[] jugadores) {
+        int total = 0;
+        foreach (var jugador in jugadores) {
+            if (jugador is Pitcher) {
+                total += ((Pitcher)jugador).JuegosPerdidos;
+            } else if (jugador is Bateador) {
+                // Aquí podrías agregar lógica para contabilizar otros tipos de estadísticas de bateadores si fuera necesario
+            }
+        }
+        return total;
+    }
+}
